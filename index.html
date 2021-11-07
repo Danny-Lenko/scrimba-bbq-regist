@@ -35,20 +35,23 @@
    <script>   
       "use strict"
 
-      document.addEventListener('submit', function(event) {
+      document.addEventListener('submit', (event) => {
          event.preventDefault();
 
-         const ourFormData = new FormData(event.target);
-         const userFirstName = ourFormData.get('firstName');
-         const userEmailAddress = ourFormData.get('emailAddress');
-         const updatedMainContent = `
-            <h2>Congratulations, ${userFirstName}!</h2>
-            <p>You're on your way to becoming a BBQ Master!</p>
-            <p class="fine-print">You will get weekly BBQ tips sent to: ${userEmailAddress}</p>
-         `
-         document.querySelector('#mainContent').innerHTML = updatedMainContent;
-      })
+         const mainContent = document.querySelector('#mainContent');
 
+         let userFormData = new FormData(event.target);
+         let userFirstName = userFormData.get('firstName')
+         let userEmailAddress = userFormData.get('emailAddress');
+         let updatedContent = 
+            `
+               <h2>Congratulations, ${userFirstName}!</h2>
+               <p>You're on your way to becoming a BBQ Master!</p>
+               <p class="fine-print">You will get weekly BBQ tips sent to: ${userEmailAddress}</p>
+            `;
+         mainContent.innerHTML = updatedContent;
+      })
+      
    </script>
 </body>
 </html>
